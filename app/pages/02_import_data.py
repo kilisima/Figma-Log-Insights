@@ -24,20 +24,22 @@ def main():
         submitted = st.form_submit_button("Import", disabled=st.session_state.data_load_in_progress, on_click=data_load_in_progress())
 
     if submitted:
-        print(f"database_file:{database_file}, upload_data:{upload_data.name}")
-        if upload_data is not None and database_file is not None:
-            st.session_state.in_progress = True
-            with st.spinner("Loading..."):
-                if libdb.import_data(upload_data, database_file):
-                    st.write("Import Complete!")
-                    # TODO 取り込んだデータ件数などを表示する
-                else:
-                    st.write("Import Failed.")
-                
-        
-        else:
-            st.write("Failesd: select database file and Upload import data")
-            st.write("登録できません。")
+        with st.container(border=True):
+            print(f"database_file:{database_file}, upload_data:{upload_data.name}")
+            if upload_data is not None and database_file is not None:
+                st.session_state.in_progress = True
+                with st.spinner("Loading..."):
+                    if libdb.import_data(upload_data, database_file):
+                        st.write("Import Complete!")
+                        # TODO 取り込んだデータ件数などを表示する
+                    else:
+                        st.write("Import Failed.")
+                        pass
+                pass
+            
+            else:
+                st.write("Failesd: select database file and Upload import data")
+                st.write("登録できません。")
         
         st.session_state.in_progress = False
 

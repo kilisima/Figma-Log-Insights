@@ -15,7 +15,7 @@ def main():
 
     st.header("Create Database")
     with st.form("create_database"):
-        st.caption("ここでファイル名にグループ名や会社名などを付与するとわかりやすくなります。")
+        st.text("ここでファイル名にグループ名や会社名などを付与するとわかりやすくなります。")
         filename = st.text_input("filename（拡張子は不要）",placeholder="XXXX株式会社、や、XXX_corp等")
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
